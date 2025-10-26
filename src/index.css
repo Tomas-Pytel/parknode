@@ -1,0 +1,24 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-my-primary: oklch(0.5042 0.1881 308.56);
+  --color-my-secondary: oklch(0.6322 0.248 28.28);
+  --color-my-tertiary: oklch(0.8119 0.1478 71.76);
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+/* globals.css */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}

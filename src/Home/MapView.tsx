@@ -8,7 +8,16 @@ import {
 import type { LatLngExpression } from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-const MapView = () => {
+type MapViewProps = {
+  coordinates: {
+    fromLatitude: number;
+    fromLongitude: number;
+    toLatitude: number;
+    toLongitude: number;
+  };
+};
+
+const MapView = ({ coordinates }: MapViewProps) => {
   const center: LatLngExpression = [48.1486, 17.1077];
   return (
     <MapContainer
@@ -20,16 +29,28 @@ const MapView = () => {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution="&copy; OpenStreetMap contributors"
       />
-      <Marker position={[48.1486, 17.1077]}>
-        <Popup>Bratislava</Popup>
-      </Marker>
-      <Polyline
-        positions={[
-          [48.1486, 17.1077],
-          [48.15, 17.1],
-        ]}
-        color="blue"
-      />
+      {coordinates.fromLatitude !== 0 &&
+      coordinates.fromLongitude !== 0 &&
+      coordinates.toLatitude !== 0 &&
+      coordinates.toLongitude !== 0 ? (
+        <>
+          <Marker
+            position={[coordinates.fromLatitude, coordinates.fromLongitude]}
+          >
+            <Popup>From</Popup>
+          </Marker>
+          <Marker position={[coordinates.toLatitude, coordinates.toLongitude]}>
+            <Popup>To</Popup>
+          </Marker>
+          <Polyline
+            positions={[
+              [coordinates.fromLatitude, coordinates.fromLongitude],
+              [coordinates.toLatitude, coordinates.toLongitude],
+            ]}
+            color="blue"
+          />
+        </>
+      ) : null}
     </MapContainer>
   );
 };

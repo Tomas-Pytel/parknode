@@ -1,3 +1,4 @@
+import BridgeInfo from "./BridgeInfo";
 import MonitoringSidebar from "./MonitoringSidebar";
 
 const MonitoringPage = () => {
@@ -6,7 +7,9 @@ const MonitoringPage = () => {
       <aside className="col-span-1 w-80">
         <MonitoringSidebar />
       </aside>
-      <section className="flex flex-1 items-center justify-center">{}</section>
+      <section className="flex flex-1 px-3">
+        <BridgeInfo />
+      </section>
     </div>
   );
 };
